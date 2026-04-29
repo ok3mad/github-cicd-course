@@ -45,7 +45,16 @@ jobs:
           push: true
           tags: ghcr.io/ok3mad/app:${{inputs.tag}}
           context: task_b
-          
+  test:
+    runs-on: ubuntu-latest
+    services:
+      app:
+         image: ghcr.io/ok3mad/app:${{inputs.tag}}
+    steps:
+      - name: Test
+        run: |
+          curl 127.0.0.1:8080/index.html
+        
           
           
           

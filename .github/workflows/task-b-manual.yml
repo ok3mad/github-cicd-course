@@ -8,6 +8,10 @@ on:
         required: true
         default: 'Hello CI/CD'
       # TODO: add tag input
+      tag:
+        description: "Image tag"
+        required: false
+        
 permissions:
   contents: read
   packages: write
@@ -35,5 +39,15 @@ jobs:
         with:
           images: ghcr.io/${{ github.repository }}
           tags: type=ref,event=tag
+      - name: Build and push
+        uses: docker/build-push-action@v7
+        with:
+          push: true
+          tags: user/app:latest
+          context: task_b
+          Dockerfile: task_b/Dockerfile
+          
+          
+          
       # TODO: build and push docker image
   # TODO: Add test job

@@ -43,9 +43,9 @@ jobs:
         uses: docker/build-push-action@v7
         with:
           push: true
-          tags: user/app:latest
+          tags: ghcr.io/ok3mad/app:${{inputs.tag}}
           context: task_b
-          Dockerfile: task_b/Dockerfile
+          
           
           
           
